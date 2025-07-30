@@ -16,31 +16,25 @@ public class Main {
 
 
         System.out.println("Bem-vindo ao sistema de aluguel de salas");
-        System.out.println();
-        System.out.println("Quantas salas serão alugadas?");
-        int n = sc.nextInt();
+        var option =-1;
+        while (true){
+            System.out.println(" 1 - Cadastrar um novo emprestimo");
+            System.out.println(" 2 - Listar emprestimos");
+            System.out.println(" 3 - Selecionar um emprestimo existente");
+            System.out.println(" 4 - Finalizar um emprestimo");
+            System.out.println(" 5 - Sair");
+            option = sc.nextInt();
 
-        for (int i = 1; i <= n;i++){
-            System.out.println("Digite as informações do CLiente");
-
-            System.out.println("Digite o nome do cliente "+ i+" :");
-            String nome = sc.next();
-
-            System.out.println("Digite a idade do cliente "+ i+" :");
-            int idade = sc.nextInt();
-
-            System.out.println("Digite o cpf do cliente "+ i+" :");
-            Long cpf = sc.nextLong();
-            Cliente cliente = new Cliente(nome,idade,cpf);
-
-            System.out.println("Digite as informações da Sala");
-            System.out.println("Digite a sala que o cliente irá alugar "+ i+" :");
-            String nomeSala = sc.next();
-
-            Sala sala = new Sala(nomeSala);
-
-            service.realizarEmprestimo(cliente,sala);
+            switch (option){
+                case 1 -> service.realizarEmprestimo();
+                case 2 -> service.listarEmprestimos();
+                case 3 -> service.emprestimoPorCliente();
+                default -> System.out.println("Opção inválida, informe uma opção do menu");
+            }
         }
+
+
+
         for (Emprestimo emprestimo : service.listarEmprestimos()){
             
             if (emprestimo.getSala().isDisponivel()){

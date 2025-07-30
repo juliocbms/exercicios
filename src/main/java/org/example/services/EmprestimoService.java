@@ -7,10 +7,12 @@ import main.java.org.example.entities.Sala;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class EmprestimoService {
 
     private List<Emprestimo> emprestimos =new ArrayList<>();
+    final Scanner sc = new Scanner(System.in);
 
 
     public boolean salaDisponivel(Sala sala) {
@@ -27,6 +29,30 @@ public class EmprestimoService {
             return;
         }
         else {
+            System.out.println("Quantas salas serão alugadas?");
+            int n = sc.nextInt();
+
+            for (int i = 1; i <= n;i++){
+                System.out.println("Digite as informações do CLiente");
+
+                System.out.println("Digite o nome do cliente "+ i+" :");
+                String nome = sc.next();
+
+                System.out.println("Digite a idade do cliente "+ i+" :");
+                int idade = sc.nextInt();
+
+                System.out.println("Digite o cpf do cliente "+ i+" :");
+                Long cpf = sc.nextLong();
+                Cliente cliente = new Cliente(nome,idade,cpf);
+
+                System.out.println("Digite as informações da Sala");
+                System.out.println("Digite a sala que o cliente irá alugar "+ i+" :");
+                String nomeSala = sc.next();
+
+                Sala sala = new Sala(nomeSala);
+
+                service.realizarEmprestimo(cliente,sala);
+            }
 
             Emprestimo emp = new Emprestimo(gerarId(),cliente,sala, LocalDateTime.now(),null);
             sala.setDisponivel(false);
