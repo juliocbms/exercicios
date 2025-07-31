@@ -1,6 +1,7 @@
 package main.java.org.example.entities;
 
 public class Sala {
+    private int idSala;
     private String sala;
     private boolean isDisponivel = true;
 
