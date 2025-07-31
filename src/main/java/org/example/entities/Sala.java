@@ -5,11 +5,21 @@ public class Sala {
     private String sala;
     private boolean isDisponivel = true;
 
-    public Sala(String sala) {
+    public Sala(int idSala, String sala) {
+        this.idSala = idSala;
         this.sala = sala;
     }
 
-    public Sala() {
+    public Sala( String sala) {
+        this.sala = sala;
+    }
+
+    public int getIdSala() {
+        return idSala;
+    }
+
+    public void setIdSala(int idSala) {
+        this.idSala = idSala;
     }
 
     public String getSala() {

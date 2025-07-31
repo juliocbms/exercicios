@@ -15,12 +15,37 @@ public class EmprestimoService {
     final Scanner sc = new Scanner(System.in);
 
 
-    public void realizarEmprestimo(){
+    public void rodarMenuEmprestimo(){
+        System.out.println("Qual opção você deseja? ");
+        var option =-1;
+        while (true){
+            System.out.println(" 1 - Cadastrar um emprestimo");
+            System.out.println(" 2 - Listar emprestimos");
+            System.out.println(" 3 - Deletar um emprestimo");
+            System.out.println(" 4 - Sair");
+            option = sc.nextInt();
+
+            switch (option){
+                case 1 -> realizarEmprestimo();
+                case 2 -> listarEmprestimos();
+                case 3 -> deletarEmprestimo();
+                case 4 -> {
+                    System.out.println("Retornando ao menu principal...");
+                    return;
+                }
+                default -> System.out.println("Opção inválida, informe uma opção do menu");
+            }
+        }
+    }
+
+
+
+    private void realizarEmprestimo(){
             System.out.println("Quantas salas serão alugadas?");
             int n = sc.nextInt();
 
             for (int i = 1; i <= n;i++){
-                System.out.println("Digite as informações do CLiente");
+                System.out.println("Digite as informações do Cliente");
 
                 System.out.println("Digite o nome do cliente "+ i+" :");
                 String nome = sc.next();
@@ -46,7 +71,7 @@ public class EmprestimoService {
             }
     }
 
-    public void emprestimoPorCliente(){
+    private void emprestimoPorCliente(){
         System.out.println("Digite o nome do cliente:");
         String nome = sc.next();
 
@@ -58,7 +83,7 @@ public class EmprestimoService {
     }
 
 
-    public void finalizarEmprestimo(){
+    private void finalizarEmprestimo(){
         System.out.println("Digite o nome do cliente: ");
         String nome = sc.next();
         emprestimos.stream()
@@ -71,7 +96,7 @@ public class EmprestimoService {
 
     }
 
-    public void deletarEmprestimo(){
+    private void deletarEmprestimo(){
         System.out.println("Digite o nome do cliente que deseja cancelar:");
         String nome = sc.next();
 
@@ -86,7 +111,7 @@ public class EmprestimoService {
 
 
 
-    public void listarEmprestimos() {
+    private void listarEmprestimos() {
         if (emprestimos.isEmpty()) {
             System.out.println("Nenhum empréstimo cadastrado.");
             return;
